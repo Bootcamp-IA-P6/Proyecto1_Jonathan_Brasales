@@ -1,5 +1,10 @@
 import time
 
+def calculate_fare(sec_stopped, sec_moving):
+    fare = sec_stopped * 0.02 + sec_moving * 0.05
+    print(f"Total to pay: {fare}")
+    return fare
+
 def taximeter():
     #Función para manejar y mostrar opciones
 
@@ -71,6 +76,12 @@ def taximeter():
 
             print(stopped_time) #Comprobar tiempos
             print(moving_time)
+
+            calculate_fare(stopped_time, moving_time) #Función para calcular el valor a pagar
+
+            # Reset las variables
+            trip_active = False
+            state = None
 
 
         elif command == "exit":
