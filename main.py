@@ -1,9 +1,18 @@
 import time
 
-def calculate_fare(sec_stopped, sec_moving):
+def calculate_fare(sec_stopped, sec_moving):    #Función para calcular tarifa
     fare = sec_stopped * 0.02 + sec_moving * 0.05
     print(f"Total to pay: {fare}")
     return fare
+
+def calculate_time(state, stopped_time, moving_time, start_time):   #Función para calcular tiempo 
+
+    duration = time.time() - start_time  # lo ponemos a 0
+    if state == "stopped":
+        stopped_time += duration
+    else:
+        moving_time += duration
+    return stopped_time, moving_time   
 
 def taximeter():
     #Función para manejar y mostrar opciones
@@ -39,26 +48,18 @@ def taximeter():
         elif command in ("stop", "move"):
             if trip_active == False:
                 print("Error: The trip isn't active")
-                continue
-            #print("Acción")
-            print(f"El estado ha cambiado a '{state}'.")  
+                continue             
 
             # Calculamos los tiempos de stop y move
-            duration = time.time() - start_time  # lo ponemos a 0
-            if state == "stopped":
-                stopped_time += duration
-            else:
-                moving_time += duration
+            stopped_time, moving_time = calculate_time(state, stopped_time, moving_time, start_time)
 
             # Cambio de conteo de tiempo
             if command == "stop":
                 state = 'stopped'
-                print(duration)
             else:
                 state = 'moving'
-                print(duration)
 
-
+            print(f"El estado ha cambiado a '{state}'.") 
             start_time = time.time()
 
         elif command == "finish":
@@ -68,11 +69,7 @@ def taximeter():
             trip_active = False
 
             # Calculamos los tiempos de stop y move
-            duration = time.time() - start_time  # lo ponemos a 0
-            if state == "stopped":
-                stopped_time += duration
-            else:
-                moving_time += duration  
+            stopped_time, moving_time = calculate_time(state, stopped_time, moving_time, start_time)
 
             print(stopped_time) #Comprobar tiempos
             print(moving_time)
@@ -89,4 +86,6 @@ def taximeter():
             break
         else:
             print("Unknown command.")
-taximeter()
+
+if __name__ == "__main__":
+    taximeter()
