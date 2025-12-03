@@ -35,15 +35,26 @@ def taximeter():
             if trip_active == False:
                 print("Error: The trip isn't active")
                 continue
-            print("Acción")
+            #print("Acción")
+            print(f"El estado ha cambiado a '{state}'.")  
 
             # Calculamos los tiempos de stop y move
             duration = time.time() - start_time  # lo ponemos a 0
             if state == "stopped":
                 stopped_time += duration
             else:
-                moving_time += duration     
+                moving_time += duration
 
+            # Cambio de conteo de tiempo
+            if command == "stop":
+                state = 'stopped'
+                print(duration)
+            else:
+                state = 'moving'
+                print(duration)
+
+
+            start_time = time.time()
 
         elif command == "finish":
             if trip_active == False:
@@ -58,7 +69,9 @@ def taximeter():
             else:
                 moving_time += duration  
 
-            print(duration)
+            print(stopped_time) #Comprobar tiempos
+            print(moving_time)
+
 
         elif command == "exit":
             print("Un gusto, vuelve pronto")
