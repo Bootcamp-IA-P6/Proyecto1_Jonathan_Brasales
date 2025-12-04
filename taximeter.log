@@ -1,0 +1,22 @@
+2025-12-04 20:33:54,238 - INFO - Trip started. Initial state: 'stopped'.
+2025-12-04 20:34:04,911 - INFO - The status has changed to 'moving'.
+2025-12-04 20:34:20,490 - INFO - The status has changed to 'stopped'.
+2025-12-04 20:35:17,677 - WARNING - Unknown command.
+2025-12-04 20:35:30,549 - INFO - The status has changed to 'stopped'.
+2025-12-04 20:35:38,687 - ERROR - Error: There are no active trips.
+2025-12-04 20:35:44,139 - INFO - Trip started. Initial state: 'stopped'.
+2025-12-04 20:35:47,027 - ERROR - Error: A trip is already in progress
+2025-12-04 20:35:49,821 - INFO - The status has changed to 'moving'.
+2025-12-04 20:35:52,529 - INFO - The status has changed to 'stopped'.
+2025-12-04 20:36:11,450 - INFO - The status has changed to 'moving'.
+2025-12-04 20:36:13,811 - INFO - The status has changed to 'stopped'.
+2025-12-04 20:42:00,555 - INFO - Trip started. Initial state: 'stopped'.
+2025-12-04 20:42:03,092 - INFO - The status has changed to 'moving'.
+2025-12-04 20:42:08,263 - INFO - The status has changed to 'stopped'.
+2025-12-04 20:42:10,568 - INFO - The status has changed to 'moving'.
+2025-12-04 20:42:20,150 - INFO - The status has changed to 'stopped'.
+2025-12-04 20:42:25,096 - INFO - Trip finished.
+2025-12-04 20:42:27,369 - INFO - Trip started. Initial state: 'stopped'.
+2025-12-04 20:42:28,913 - INFO - The status has changed to 'moving'.
+2025-12-04 20:42:33,855 - INFO - Trip finished.
+2025-12-04 20:42:36,397 - DEBUG - App closed. Come back soon.
