@@ -1,4 +1,12 @@
 import time
+import logging
+
+logging.basicConfig(
+    level=logging.DEBUG,  # Nivel mínimo de mensajes a mostrar (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+    format='%(asctime)s - %(levelname)s - %(message)s', # Formato del mensaje
+    filename='taximeter.log',  # Nombre del archivo donde se guardarán los logs
+    filemode='a'  # 'a' para añadir (append), 'w' para sobreescribir cada vez
+)
 
 def calculate_fare(sec_stopped, sec_moving):    # Function to calculate rate
     fare = sec_stopped * 0.02 + sec_moving * 0.05
@@ -34,9 +42,12 @@ def taximeter():    # Function to manage and display options
         if command == "start":
             if trip_active == True:
                 print("‼️  Error: A trip is already in progress")
+                logging.error("A trip is already in progress")
+
                 continue
             
             print("Start Trip\nTrip started. Initial state: 'stopped'.")
+            logging.info("Trip started. Initial state: 'stopped'.")
             trip_active = True
             start_time = time.time()
             stopped_time = 0
@@ -47,6 +58,7 @@ def taximeter():    # Function to manage and display options
         elif command in ("stop", "move"):
             if trip_active == False:
                 print("‼️  Error: You must start the trip first.")
+                logging.error("You must start the trip first.")
                 continue             
 
             # Calculate the stop and move times.
@@ -58,14 +70,17 @@ def taximeter():    # Function to manage and display options
             else:
                 state = 'moving'
 
-            print(f"🔰   The status has changed to '{state}'.") 
+            print(f"🔰   The status has changed to '{state}'.")
+            logging.info(f"The status has changed to '{state}'.")  
             start_time = time.time()
 
         elif command == "finish":
             if trip_active == False:
                 print("‼️  Error: There are no active trips.")
+                logging.error("There are no active trips.")
                 continue
             trip_active = False
+            logging.info("Trip finished.")
 
             # Calculate the stop and move times.
             stopped_time, moving_time = calculate_time(state, stopped_time, moving_time, start_time)
@@ -81,9 +96,11 @@ def taximeter():    # Function to manage and display options
 
         elif command == "exit":
             print("That's all for today.\n")
+            logging.debug("App closed. Come back soon.")
             break
         else:
             print("⚠️   Unknown command.")
+            logging.warning("Unknown command.")
 
 if __name__ == "__main__":
     taximeter()
