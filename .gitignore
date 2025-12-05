@@ -1,2 +1,8 @@
 Apuntes.md
 pruebas.py
+test_taximeterP.py
+_pycache_
+.pytest_cache
+tempCodeRunnerFile.py
+.coverage
+htmlcov

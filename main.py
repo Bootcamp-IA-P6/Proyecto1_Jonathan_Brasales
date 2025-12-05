@@ -2,10 +2,10 @@ import time
 import logging
 
 logging.basicConfig(
-    level=logging.DEBUG,  # Nivel mínimo de mensajes a mostrar (DEBUG, INFO, WARNING, ERROR, CRITICAL)
-    format='%(asctime)s - %(levelname)s - %(message)s', # Formato del mensaje
-    filename='taximeter.log',  # Nombre del archivo donde se guardarán los logs
-    filemode='a'  # 'a' para añadir (append), 'w' para sobreescribir cada vez
+    level=logging.DEBUG,  # Minimum level of messages to display (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+    format='%(asctime)s - %(levelname)s - %(message)s', # Message format
+    filename='taximeter.log',  
+    filemode='a'    # ‘a’ to append 
 )
 
 def calculate_fare(sec_stopped, sec_moving):    # Function to calculate rate
@@ -43,7 +43,6 @@ def taximeter():    # Function to manage and display options
             if trip_active == True:
                 print("‼️  Error: A trip is already in progress")
                 logging.error("A trip is already in progress")
-
                 continue
             
             print("Start Trip\nTrip started. Initial state: 'stopped'.")
