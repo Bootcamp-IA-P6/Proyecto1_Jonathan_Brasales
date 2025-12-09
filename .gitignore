@@ -5,3 +5,7 @@ __pycache__
 .pytest_cache
 tempCodeRunnerFile.py
 .coverage
+taxiPrueba.log
+UX_pruebas.py
+historico_viajes.txt
+prueba_POO.py
