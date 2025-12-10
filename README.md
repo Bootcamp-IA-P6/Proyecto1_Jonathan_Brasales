@@ -1,6 +1,6 @@
 # 🚕 Taxímetro en Python
 
-Este proyecto es un simulador de taxímetro avanzado desarrollado en Python. La aplicación, controlada por la línea de comandos, no solo calcula la tarifa de un viaje en tiempo real, sino que también incluye un sistema de **logs**, **tests unitarios**, un **historial de trayectos** y **tarifas configurables**. El programa guía al usuario desde el inicio, permite gestionar múltiples trayectos y guarda un registro persistente de cada viaje.
+Este proyecto es un simulador de taxímetro desarrollado en Python. La aplicación, controlada por la línea de comandos, no solo calcula la tarifa de un viaje en tiempo real, sino que también incluye un sistema de **logs**, **tests unitarios**, un **historial de trayectos** y **tarifas configurables**. El programa guía al usuario desde el inicio, permite gestionar múltiples trayectos y guarda un registro persistente de cada viaje.
 
 
 ---
@@ -9,14 +9,14 @@ Este proyecto es un simulador de taxímetro avanzado desarrollado en Python. La 
 
 Este proyecto se ha desarrollado con el siguiente conjunto de herramientas y tecnologías.
 
-*   **Lenguaje**: [**Python 3.8+**](https://www.python.org/ )
+*   **Lenguaje**: [**Python 3.13.5**](https://www.python.org/ )
 *   **Gestor de Entorno**: [**Anaconda**](https://www.anaconda.com/ ) fue utilizado para gestionar las dependencias y el entorno virtual.
 *   **Editor de Código**: El desarrollo se realizó en [**Visual Studio Code**](https://code.visualstudio.com/ ).
 *   **Librerías Principales**:
     *   `time`: Para la gestión del tiempo y el cálculo de las tarifas.
-    *   `logging`: .... tarifas.
-    *   `datetime`: ...s.
-    *   `time`: ,,...
+    *   `logging`: Usado para rastrear los eventos que ocurren cuando se ejecuta el programa.
+    *   `datetime`: El módulo datetime proporciona clases para manipular fechas y horas.
+    *   `pytest`: Usado para la escritura de pruebas pequeñas y legibles, aunque puede permitir pruebas funcionales complejas para aplicaciones y bibliotecas.
 
 ---
 
@@ -68,7 +68,7 @@ pip install -r requirements.txt
 
 Una vez que el entorno esté activado y las dependencias instaladas, puedes iniciar el taxímetro con el siguiente comando:
 ```python
-main.py
+python main.py
 ```
 
 ## ✨ Características Principales
@@ -100,7 +100,7 @@ Una vez que el programa está en ejecución, te dará la bienvenida y mostrará 
 *   Actualmente, no hay bugs conocidos. ¡Si encuentras alguno, no dudes en reportarlo!
 
 ### Posibles Mejoras
-*   **Interfaz Gráfica de Usuario (GUI)**: Desarrollar una interfaz visual (usando `Tkinter` o `PyQt`) para que el uso del taxímetro sea más intuitivo.
+*   **Interfaz Gráfica de Usuario (GUI)**: Desarrollar una interfaz visual (usando `Tkinter` , `PyQt` o `Streamlit`) para que el uso del taxímetro sea más intuitivo.
 *   **Exportar Recibos Individuales**: Añadir una función para guardar el resumen de un viaje específico en un archivo PDF o de texto como si fuera un recibo.
 
 ---
