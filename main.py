@@ -8,7 +8,7 @@ import os
 # ==============================================================================
 
 record_file = "Record.txt"
-
+base_rate = 2.0
 
 def trip_record(move_time, stop_time, total_fare):  # Save the history of an entire trip
     
@@ -34,7 +34,7 @@ def trip_record(move_time, stop_time, total_fare):  # Save the history of an ent
         return False
 
 def calculate_fare(sec_stopped, sec_moving, fare_stopped, fare_moving):    # Function to calculate rate
-    fare = sec_stopped * fare_stopped + sec_moving * fare_moving
+    fare = (sec_stopped * fare_stopped + sec_moving * fare_moving) + base_rate
     #print(fare_stopped,fare_moving)
     print(f"Total for the trip: €{fare:.2f}\n")
     return fare
@@ -61,6 +61,7 @@ class TaximeterLogic:
         self.state = None  # 'stopped' o 'moving'
         self.fare_stopped = fare_stopped
         self.fare_moving = fare_moving
+        self.fare = 0
         
     def update_time(self):   # Function to calculate time
         if not self.trip_active or not self.state:
@@ -106,7 +107,7 @@ class TaximeterLogic:
         self.state = new_state
 
         logging.info(f"The status has changed to '{new_state}'.")
-        return f"🔰   The status has changed to '{new_state}'."
+        print(f"🔰   The status has changed to '{new_state}'.")
         
     def finish_trip(self):
         if self.trip_active == False:
@@ -115,16 +116,25 @@ class TaximeterLogic:
         
         self.update_time()
 
-        fare = calculate_fare(self.stopped_time, self.moving_time, logic.fare_stopped,logic.fare_moving) # Function to calculate rate
-        trip_record(self.moving_time, self.stopped_time, fare)
+        self.fare = calculate_fare(self.stopped_time, self.moving_time, self.fare_stopped,self.fare_moving) # Function to calculate rate
+        trip_record(self.moving_time, self.stopped_time, self.fare)
         
         # Reset variables
         self.trip_active = False
         self.state = None
         logging.info("Trip finished.")
+    
+    # Function for GUI
+    def get_status(self):   # Returns the current status for the GUI
+        return {
+            "active": self.trip_active,
+            "state": self.state,
+            "moving_time": self.moving_time,
+            "stopped_time": self.stopped_time,
+            "total_fare": self.fare if not self.trip_active else 0.0
+        }
 
-
-def custom_fare():  # Request rates from the user 
+def custom_fare():  # Request rates from the user, only for CLI
     
     print("\n--- RATE SETTINGS ---")
     
@@ -153,8 +163,9 @@ def custom_fare():  # Request rates from the user
             logging.error("The user entered a non-numeric value for the rate. Using default values.")
             return 2/100, 5/100
 
-
-
+# ==============================================================================
+# 3.  Section to be removed if GUI is used
+# ==============================================================================
 
 def taximeter(logic):
     # Create an instance of the logic
@@ -195,7 +206,6 @@ def taximeter(logic):
         else:
             print("⚠️   Unknown command.")
             logging.warning("Unknown command.")
-
 
 if __name__ == "__main__":
     stopped, moving = custom_fare()
