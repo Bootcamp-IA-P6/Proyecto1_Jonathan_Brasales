@@ -557,3 +557,5 @@
 2025-12-12 14:29:07,101 - INFO - The status has changed to 'moving'.
 2025-12-12 14:29:07,900 - INFO - The status has changed to 'stopped'.
 2025-12-12 14:29:08,852 - INFO - Trip finished.
+2025-12-12 17:58:57,339 - ERROR - The user entered a non-numeric value for the rate. Using default values.
+2025-12-12 17:58:59,542 - INFO - App closed. Come back soon.
