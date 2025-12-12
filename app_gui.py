@@ -1,16 +1,16 @@
 import customtkinter as ctk
-from main import TaximeterLogic, custom_fare
+from main import TaximeterLogic
 
 class TaximeterApp(ctk.CTk):
 
     def __init__(self, logic_instance):
         super().__init__()
 
+        #self.night_mode = ctk.BooleanVar(value=False)
         self.logic = logic_instance
         self.title("Taximeter")
         self.geometry("800x450")
         ctk.set_appearance_mode("System") # Modo oscuro/claro del sistema
-
 
         self.setup_ui()
         self.display_status()
@@ -46,7 +46,11 @@ class TaximeterApp(ctk.CTk):
 
         # FINISH
         self.finish_button = ctk.CTkButton(self, text="FINISH",command=self.finish_command, fg_color="red", hover_color="#CC0000")
-        self.finish_button.pack(pady=50)
+        self.finish_button.pack(pady=20)
+
+        # Switch
+        #self.switch_button = ctk.CTkSwitch(self, text="Noche", command= self.custom_fare , onvalue=True, offvalue=False, variable=self.night_mode)
+        #self.switch_button.pack(pady=30)
 
         # Simple command
     def start_command(self):
@@ -67,7 +71,7 @@ class TaximeterApp(ctk.CTk):
 
         if status["active"]:
             #self.fare_label.configure(text="", font=("Arial",25))
-            self.status_label.configure(text=f"ESTADO: {status['state'].upper()}")
+            self.status_label.configure(text=f"STATUS: {status['state'].upper()}")
         else:
             #self.fare_label.configure(text="INICIE VIAJE", text_color="gray")
             self.status_label.configure(text="")
@@ -77,20 +81,18 @@ class TaximeterApp(ctk.CTk):
             
         self.fare_label.configure(text=f"Finished trip: €{status['total_fare']:.2f}", text_color="green")
         self.status_label.configure(
-            text=f"FINALIZADO | Mov: {status['moving_time']:.2f}s | Par: {status['stopped_time']:.2f}s"
+            text=f"FINISHED | Moving Time: {status['moving_time']:.2f}s | Stopped Time: {status['stopped_time']:.2f}s"
         )
 
 
 # Ejecutar
 if __name__ == "__main__":
 
-    stopped, moving = 0.05,0.02 
+    stopped, moving = 0.02,0.05 #TaximeterApp.custom_fare()
     
-    # 2. Crear la instancia de la lógica (¡ESTO ES NECESARIO!)
+    # 2. Create the instance
     logic = TaximeterLogic(stopped, moving)
     
-    # 3. Crear la aplicación de la GUI y PASARLE la lógica
+    # 3. Create GUI and pass logic
     app = TaximeterApp(logic_instance=logic) 
-    
-    # 4. Iniciar el bucle principal de CustomTkinter
     app.mainloop()

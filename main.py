@@ -134,7 +134,7 @@ class TaximeterLogic:
             "total_fare": self.fare if not self.trip_active else 0.0
         }
 
-def custom_fare():  # Request rates from the user 
+def custom_fare():  # Request rates from the user, only for CLI
     
     print("\n--- RATE SETTINGS ---")
     
